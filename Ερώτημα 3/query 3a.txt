@@ -1,0 +1,7 @@
+BEGIN;
+LOCK TABLE SALESORDERHEADER IN ACCESS EXCLUSIVE MODE;
+UPDATE SalesOrderHeader SET OrderDate='2015-01-28',DueDate='2015-01-28', ShipDate= '2015-01-28', TaxAmt='12.323';
+UPDATE SalesOrderHeader SET OrderDate='2015-01-29',DueDate= '2015-01-29', ShipDate='2015-01-29', TaxAmt='13.232';
+UPDATE SalesOrderHeader SET OrderDate='2015-01-30',DueDate= '2015-01-30', ShipDate='2015-01-30', TaxAmt='14.343';
+COMMIT;
+END;

@@ -1,0 +1,17 @@
+copy ProductCategory from 'C:\ProductCategory.txt' Delimiter ',' CSV Header;
+
+copy Product from 'C:\Product.txt' Delimiter ',' CSV Header;
+
+copy CreditCard from 'C:\CreditCard.txt' Delimiter ',' CSV Header;
+
+copy Address from 'C:\Address.txt' Delimiter ',' CSV Header;
+
+copy PersonAddress from 'C:\PersonAddress.txt' Delimiter ',' CSV Header;
+
+copy Person from 'C:\Person.txt' Delimiter ',' CSV Header;
+
+copy Customer from 'C:\Customer.txt' Delimiter ',' CSV Header;
+
+copy SalesOrderHeader from 'C:\SalesOrderHeader.txt' Delimiter ',' CSV Header;
+
+copy SalesOrderDetail from 'C:\SalesOrderDetail.txt' Delimiter ',' CSV Header;

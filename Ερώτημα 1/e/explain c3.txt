@@ -1,0 +1,10 @@
+explain(
+
+SELECT salesorderdetail.productid,product.name as product_name,productcategory.name as prod_category_name,avg(SalesOrderDetail.LineTotal / SalesOrderHeader.SubTotal) as avg_per_total
+FROM salesorderdetail,product,productcategory,salesorderheader
+WHERE product.productid = salesorderdetail.productid
+AND product.productcategoryid = productcategory.productcategoryid AND 
+salesorderdetail.salesorderid = salesorderheader.salesorderid 
+GROUP BY salesorderdetail.productid,product.name,productcategory.name
+ORDER BY avg_per_total DESC limit 10
+   );

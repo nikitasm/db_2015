@@ -1,0 +1,14 @@
+
+
+CREATE  UNIQUE  INDEX CONCURRENTLY  custid ON customerrel 
+    ( customerid );
+
+
+
+(select customerid,sum(orderqty)as max_total_qty 
+from salesorderheaderrel  inner join salesorderdetailrel ON  salesorderheaderrel.salesorderid = salesorderdetailrel.salesorderid 
+
+Group by customerid
+order by max_total_qty desc limit 1)
+;
+

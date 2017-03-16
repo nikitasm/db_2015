@@ -1,0 +1,5 @@
+(select customerid,sum(orderqty) as max_total_qty 
+from salesorderheader  inner join salesorderdetail ON  salesorderheader.salesorderid = salesorderdetail.salesorderid 
+
+Group by customerid
+order by max_total_qty desc limit 1);

@@ -1,0 +1,260 @@
+CREATE TABLE ProductCategory
+(
+  ProductCategoryID integer NOT NULL,
+  Name character(100),
+  CONSTRAINT ProductCategory_primary_key PRIMARY KEY (ProductCategoryID)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE ProductCategory
+  OWNER TO postgres;
+
+
+
+-__________________________________________________________________________
+
+
+
+
+CREATE TABLE Product
+(
+  ProductID integer NOT NULL,
+  Name character(100),
+  SafetyStockLevel integer NOT NULL,
+  ReorderPoint integer NOT NULL,
+  StandartCost money,
+  ListPrice money,
+  ProductCategoryID integer,
+  CONSTRAINT Product_primary_key PRIMARY KEY (ProductID),
+  CONSTRAINT Product_ProductCategoryID_fkey FOREIGN KEY (ProductCategoryID)
+  REFERENCES ProductCategory (ProductCategoryID) MATCH SIMPLE
+  ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE Product
+  OWNER TO postgres;
+
+______________________________________________________________________________
+
+
+
+CREATE TABLE CreditCard
+
+(
+  
+
+   CreditCardID integer NOT NULL,
+  
+   CardType character(30),
+
+   CardNumber character(100),
+
+   ExpMonth character(10),
+
+   ExpYear character(10),
+
+  CONSTRAINT CreditCard_primary_key PRIMARY KEY (CreditCardID)
+
+)
+
+WITH (
+  
+   OIDS=FALSE
+);
+
+ALTER TABLE CreditCard
+ 
+  OWNER TO postgres;
+
+
+________________________________________________________________________
+
+
+
+
+
+CREATE TABLE PersonAddress
+
+(
+  
+
+   PersonID integer NOT NULL,
+  
+   AddressID integer NOT NULL
+
+   
+)
+
+WITH (
+  
+   OIDS=FALSE
+);
+
+ALTER TABLE PersonAddress
+ 
+  OWNER TO postgres;
+
+ 
+
+
+
+
+
+________________________________________________________________________
+
+
+
+
+CREATE TABLE Address
+
+(
+  
+
+   AddressID integer NOT NULL,
+  
+   AddressLine1 character(50),
+
+   AddressLine2 character(50),
+ 
+   City character(100),
+
+   PostalCode character(10),
+
+   CONSTRAINT Address_primary_key PRIMARY KEY (AddressID)
+
+)
+
+WITH (
+  
+   OIDS=FALSE
+);
+
+ALTER TABLE Address
+ 
+  OWNER TO postgres;
+
+
+
+
+__________________________________________________________________________
+
+
+
+
+
+
+CREATE TABLE Person
+
+(
+  
+
+   PersonID integer NOT NULL,
+  
+   Title character(120),
+   
+   FirstName character(60),
+  
+   LastName character(60),
+
+   CONSTRAINT Person_primary_key PRIMARY KEY (PersonID)
+ 
+
+   
+)
+
+WITH (
+  
+   OIDS=FALSE
+);
+
+ALTER TABLE Person
+ 
+  OWNER TO postgres;
+
+___________________________________________________________________
+
+
+
+
+
+CREATE TABLE Customer
+
+(
+  
+
+   CustomerID integer NOT NULL,
+
+   PersonID integer,
+  
+   CONSTRAINT Customer_primary_key PRIMARY KEY (CustomerID)
+)
+
+WITH (
+  
+   OIDS=FALSE
+);
+
+ALTER TABLE Customer
+ 
+  OWNER TO postgres;
+
+
+_________________________________________________________________
+
+
+
+
+CREATE TABLE SalesOrderHeader
+(
+  SalesOrderID integer NOT NULL,
+  OrderDate date,
+  DueDate date,
+  ShipDate date,
+  OnlineOrderFlag Boolean,
+  CustomerID integer,
+  CreditCardID integer,
+  SubTotal money,
+  TaxAmt money,
+  Freight money,
+  TotalDue money,
+  CONSTRAINT SalesOrderHeader_primary_key PRIMARY KEY (SalesOrderID),
+  CONSTRAINT SalesOrderHeader_Customerid_fkey FOREIGN KEY (CustomerID)
+      REFERENCES Customer (CustomerID) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE SalesOrderHeader
+  OWNER TO postgres;
+
+
+
+
+
+_________________________________________________________________________
+
+CREATE TABLE SalesOrderDetail
+(
+  SalesOrderID integer NOT NULL,
+  SalesOrderDetailID integer NOT NULL,
+  OrderQty integer,	
+  ProductID integer,
+  UnitPrice money,
+  UnitPriceDiscount money,
+  LineTotal money
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE SalesOrderDetail
+  OWNER TO postgres;
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+CREATE TABLE CustomerREL (
+CustomerID integer NOT NULL,
+PersonID integer references Person(PersonID),
+PRIMARY KEY (CustomerID)
+);
+
+
+______________________________________________________________________
+
+
+CREATE TABLE ProductCategoryREL (
+  ProductCategoryID integer NOT NULL,
+  prodcatname ProductCategory,
+  PRIMARY KEY (ProductCategoryID)
+);
+
+
+__________________________________________________________________________
+
+
+
+
+CREATE TABLE ProductREL (
+  ProductID integer NOT NULL,
+  prodname Product,
+  SafetyStockLevel integer NOT NULL,
+  ReorderPoint integer NOT NULL,
+  stcost_listpr Amount,
+  ProductCategoryID integer references ProductCategory(ProductCategoryID),
+  PRIMARY KEY (ProductID)
+  
+);
+
+______________________________________________________________________________
+
+
+
+CREATE TABLE CreditCardREL (
+  
+   CreditCardID integer NOT NULL,
+  
+   typ_numcard Card,
+   expm_y carddate,
+   PRIMARY KEY (CreditCardID) 	
+
+);
+
+
+________________________________________________________________________
+
+
+
+
+
+CREATE TABLE PersonAddressREl (
+  
+   PersonID integer references Person(PersonID),
+  
+   AddressID integer references Address(AddressID)
+
+   
+);
+
+
+
+
+
+________________________________________________________________________
+
+
+
+
+CREATE TABLE AddressREL (
+  
+   AddressID integer NOT NULL,
+  
+   addressl1l2_ct_pc Addressinfo,
+ 
+   
+  PRIMARY KEY (AddressID)
+
+
+);
+
+
+__________________________________________________________________________
+
+
+
+
+
+
+CREATE TABLE PersonREL (
+  
+   PersonID integer NOT NULL,
+  
+   pers_tlt_fn_ln Personal,
+
+  PRIMARY KEY (PersonID)
+ 
+
+);   
+
+___________________________________________________________________
+
+
+
+
+
+
+
+CREATE TABLE SalesOrderHeaderREL (
+
+  SalesOrderID integer NOT NULL,
+  ordd_dud_shpd_onlflag OrDates,
+  
+  CustomerID integer references Customer(CustomerID),
+  CreditCardID integer references CreditCard(CreditCardID),
+  subt_tax_frt_tdue Amount,
+
+  PRIMARY KEY (SalesOrderID)
+);
+
+
+
+
+
+
+
+________________________________________________________________________
+
+
+
+CREATE TABLE SalesOrderDetailREL (
+
+  SalesOrderID integer references SalesOrderHeader(SalesOrderID),
+  SalesOrderDetailID integer NOT NULL,	
+  ProductID integer references Product(ProductID),
+OrderQty integer(10),
+  untpr_updsc_lntot Amount
+ 
+);
+
+
+
+
+
+

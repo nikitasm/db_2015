@@ -1,0 +1,110 @@
+INSERT INTO customerrel (
+customerid,
+personid)
+
+SELECT customerid, personid
+FROM Customer;
+
+__________________________________________________
+
+INSERT INTO personrel (
+personid,
+pers_tlt_fn_ln.title,pers_tlt_fn_ln.firstname,pers_tlt_fn_ln.lastname)
+
+SELECT personid,title,firstname,lastname
+FROM person;
+
+______________________________________________________
+
+
+
+INSERT INTO productcategoryrel (
+productcategoryid,prodcatname.name)
+
+SELECT productcategoryid,name
+FROM productcategory;
+
+______________________________________________________
+
+
+INSERT INTO productrel (
+ProductID,
+prodname.name,
+safetystocklevel,
+reorderpoint,
+stcost_listpr.standardcost,stcost_listpr.listprice,
+productcategoryid)
+
+SELECT ProductID,name,safetystocklevel,reorderpoint,standardcost,listprice,productcategoryid
+FROM product;
+
+_____________________________________________________
+
+INSERT INTO creditcardrel (
+ CreditCardID,
+typ_numcard.creditcardtype,typ_numcard.creditcardnumber,
+expm_y.expmonth,expm_y.expyear)
+
+SELECT CreditCardID,cardtype,cardnumber,expmonth,expyear
+FROM creditcard;
+
+______________________________________________________
+
+INSERT INTO PersonAddressREl (
+PersonID,
+AddressID)
+
+SELECT PersonID,AddressID
+FROM PersonAddress;
+
+__________________________________________________
+
+
+INSERT INTO AddressREL (
+AddressID,
+addressl1l2_ct_pc.addressline1,addressl1l2_ct_pc.addressline2,
+addressl1l2_ct_pc.city,addressl1l2_ct_pc.postalcode)
+
+SELECT AddressID,addressline1,addressline2,city,postalcode
+FROM address;
+
+____________________________________________________
+
+
+INSERT INTO personrel (
+personid,
+pers_tlt_fn_ln.title,pers_tlt_fn_ln.firstname,pers_tlt_fn_ln.lastname)
+
+SELECT personid,title,firstname,lastname
+FROM person;
+
+_____________________________________________________
+
+
+INSERT INTO SalesOrderHeaderREL(
+ SalesOrderID,
+ ordd_dud_shpd_onlflag.orderdate,ordd_dud_shpd_onlflag.duedate,
+ordd_dud_shpd_onlflag.shipdate,ordd_dud_shpd_onlflag.onlineorderflag,
+customerid,
+creditcardid,
+subt_tax_frt_tdue.subtotal,subt_tax_frt_tdue.taxamt,
+subt_tax_frt_tdue.freight,subt_tax_frt_tdue.totaldue)
+
+SELECT SalesOrderID,orderdate,duedate,shipdate,onlineorderflag,customerid,creditcardid,subtotal,taxamt,freight,totaldue
+FROM SalesOrderHeader;
+
+___________________________________________________
+
+
+INSERT INTO SalesOrderDetailREL (
+
+SalesOrderID,
+SalesOrderDetailID,
+Orderqty,
+ProductID,
+untpr_updsc_lntot.unitprice,
+untpr_updsc_lntot.unitpricediscount,
+untpr_updsc_lntot.linetotal)
+
+SELECT SalesOrderID,SalesOrderDetailID,OrderQty,ProductID,unitprice,unitpricediscount,linetotal
+FROM SalesOrderDetail;

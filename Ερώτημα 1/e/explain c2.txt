@@ -1,0 +1,10 @@
+explain(
+SELECT CustomerID,COUNT(SalesOrderID) as orders_cnt
+   FROM
+     (SELECT salesorderdetail.SalesOrderID,CustomerID
+        FROM SalesOrderDetail,SalesOrderHeader,Product 
+        WHERE SalesOrderDetail.SalesOrderID=SalesOrderHeader.SalesOrderID AND SalesOrderDetail.ProductID=Product.ProductID
+        GROUP BY SalesOrderDetail.SalesOrderID,CustomerID
+        HAVING COUNT(DISTINCT ProductCategoryID)>3) as categ
+   GROUP BY CustomerID
+   );

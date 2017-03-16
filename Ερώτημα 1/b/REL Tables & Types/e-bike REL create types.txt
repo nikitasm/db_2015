@@ -1,0 +1,68 @@
+CREATE TYPE AddressInfo AS (
+AddressLine1 character(50),
+AddressLine2 character(50),
+City character(100),
+PostalCode character(10)
+);
+
+______________________________
+
+CREATE TYPE Personal AS (
+Title character (120),
+FirstName character(50),
+LastName character(50)
+);
+
+______________________________
+
+CREATE TYPE Card AS (
+CreditCardType character(20),
+CreditCardNumber character(18)
+);
+
+
+______________________________
+
+CREATE TYPE OrDates AS (
+OrderDate character(30),
+DueDate character(30),
+ShipDate character(30),
+OnlineOrderFlag boolean
+);
+
+______________________________
+
+
+CREATE TYPE carddate AS (
+ExpMonth character(2),
+ExpYear character(4)
+);
+
+
+______________________________
+
+
+CREATE TYPE Amount AS (
+
+SubTotal money,
+TaxAmt money,
+Freight money,
+TotalDue money,
+UnitPrice money,
+UnitPriceDiscount money,
+LineTotal money,
+StandardCost money,
+ListPrice money
+);
+
+
+______________________________
+
+
+CREATE TYPE ProductName AS (
+Name character(120)
+);
+
+CREATE TYPE ProductCategoryName AS (
+Name character(120)
+);

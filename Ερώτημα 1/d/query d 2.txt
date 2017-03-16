@@ -1,0 +1,16 @@
+
+
+CREATE  UNIQUE  INDEX CONCURRENTLY  salorddetid ON salesorderdetailrel 
+    ( salesorderdetailid );
+
+
+
+SELECT customerid,count(salesorderid) as orders_cnt
+FROM 
+ (SELECT salesorderdetailrel.SalesOrderID,CustomerID
+  FROM salesorderdetailrel,salesorderheaderrel,productrel
+WHERE  salesorderdetailrel.SalesOrderID=salesorderheaderrel.SalesOrderID AND salesorderdetailrel.ProductID=productrel.ProductID
+GROUP BY salesorderdetailrel.SalesOrderID,CustomerID
+HAVING COUNT(DISTINCT ProductCategoryID)>3) as categ
+GROUP BY CustomerID;
+

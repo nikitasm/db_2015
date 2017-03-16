@@ -1,0 +1,9 @@
+explain(
+SELECT salesorderdetailrel.productid,prodname as product_name,prodcatname as prod_category_name,avg(((untpr_updsc_lntot).LineTotal) / ((subt_tax_frt_tdue).SubTotal)) as avg_per_total
+FROM salesorderdetailrel,productrel,productcategoryrel,salesorderheaderrel
+WHERE productrel.productid = salesorderdetailrel.productid
+AND productrel.productcategoryid = productcategoryrel.productcategoryid AND 
+salesorderdetailrel.salesorderid = salesorderheaderrel.salesorderid 
+GROUP BY salesorderdetailrel.productid,prodname,prodcatname
+ORDER BY avg_per_total DESC limit 10
+   );
